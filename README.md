@@ -10,3 +10,8 @@ basta acessar a pasta usando o terminal e executar o comando:
 docker-compose up -d
 ```
 e todas as imagens serão construidas e os containers iniciados.
+
+Obs.:  
+Todos os testes foram executados a partir da distribuição do `Linux Ubuntu 17.10`   
+`Docker version 17.11.0-ce, build 1caf76c`  
+`docker-compose version 1.8.0, build unknown`  
