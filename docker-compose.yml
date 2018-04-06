@@ -1,0 +1,46 @@
+version: '2'
+services:
+  mysql-app:
+    container_name: mysql-app
+    hostname: mysql-app
+    build:
+      context: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: notes-api
+      MYSQL_USER: notes-api
+      MYSQL_PASSWORD: notes-api
+    networks:
+      app_net:
+        ipv4_address: 10.10.0.10
+
+  node-app:
+    container_name: node-app
+    hostname: node-app
+    build:
+      context: ./nodejs
+    environment:
+      MYSQL_ROOT_PASSWORD: notes-api
+      MYSQL_USER: notes-api
+    networks:
+      app_net:
+        ipv4_address: 10.10.0.2
+
+  nginx-app:
+    container_name: nginx-app
+    hostname: nginx-app
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    networks:
+      app_net:
+        ipv4_address: 10.10.0.3
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 10.10.0.0/24
